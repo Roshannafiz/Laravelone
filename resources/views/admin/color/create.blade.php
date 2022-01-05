@@ -20,7 +20,7 @@
                 <form action="{{ url('/colors/') }}" method="POST" class="forms-sample" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group row">
-                        <label for="name" class="col-sm-3 col-form-label">Size Name</label>
+                        <label for="name" class="col-sm-3 col-form-label">Color Name</label>
                         <div class="col-sm-9">
                             <input type="text" style="color: red !important" class="form-control" name="color" id="input"
                                 data-role="tagsinput">

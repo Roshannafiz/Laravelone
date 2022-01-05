@@ -35,6 +35,11 @@ class HomeController extends Controller
         $product = Product::findOrFail($id);
         $sizes = Size::find($product->size_id);
         $colors = Color::find($product->color_id);
-        return view('frontend.view_pages.view_product', compact('product', 'categories', 'subcategories', 'brands', 'units', 'sizes', 'colors'));
+
+        // For Releted Product
+        $cat_id = $product->cat_id;
+        $releted_products = Product::where('cat_id', $cat_id)->limit(6)->get();
+
+        return view('frontend.view_pages.view_product', compact('product', 'categories', 'subcategories', 'brands', 'units', 'sizes', 'colors', 'releted_products'));
     }
 }

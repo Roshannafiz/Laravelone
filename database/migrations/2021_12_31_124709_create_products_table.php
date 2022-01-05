@@ -24,7 +24,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('short_description')->nullable();
-            $table->string('description');
+            $table->longText('description');
             $table->float('regular_price')->nullable();
             $table->float('seal_price');
             $table->string('SKU');

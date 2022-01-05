@@ -109,6 +109,27 @@
                                 id="price">${{ $product->seal_price }}</span>
                             <del class="del-price">${{ $product->regular_price }}</del>
                         </div>
+
+
+                        <label for="size">
+                            <select class="form-control">
+                                <option>Size</option>
+                                @foreach (json_decode($sizes->size) as $value)
+                                    <option value="$value">{{ $value }}</option>
+                                @endforeach
+                            </select>
+                        </label>
+
+                        <label for="color">
+                            <select class="form-control">
+                                <option>Color</option>
+                                @foreach (json_decode($colors->color) as $value)
+                                    <option value="$value">{{ $value }}</option>
+                                @endforeach
+                            </select>
+                        </label>
+
+
                         <div class="short-description">
                             <p class="info">
                                 {!! $product->short_description !!}
@@ -315,303 +336,52 @@
                 </div>
             </div>
             <div class="row related-item-slider-main-full">
-                <div class="col-lg-12">
-                    <div class="single-new-collection-item single-product-item">
-                        <div class="product-img-box">
-                            <a href="https://bytesed.com/laravel/zaika/product/blue-denim-ladies">
-                                <img src="https://bytesed.com/laravel/zaika/assets/uploads/media-uploader/grid-appealing-young-woma-pp5ig1638249594.jpg"
-                                    alt="" />
-                            </a>
-                            <div class="hover">
-                                <ul class="list">
-                                    <li><a href="#" id="quickview" class="quick-view"
-                                            data-title='Blue Denim Ladies' data-slug='blue-denim-ladies'
-                                            data-summary='Thundercats are on the move, Thundercats are loose. Feel the magic, hear the roar, Thundercats are loose. Thunder, thunder, thunder, Thundercats! Thunder, thunder, thunder, Thundercats! Thunder, thunder, thunder, Thundercats! Thunder, thunder, thunder, Thundercats! Thundercats!'
-                                            data-price='$15.00' data-sale-price='$12.00' data-attributes='[]'
-                                            data-category='Women&#039;s Style' data-subcategory='[]'
-                                            data-category-url='https://bytesed.com/laravel/zaika/product/category/3'
-                                            data-image='https://bytesed.com/laravel/zaika/assets/uploads/media-uploader/appealing-young-woma-pp5ig1638249594.jpg'
-                                            data-rating='' data-inventory='SKU-PBXYZ3' data-in-stock='148'>Quickview <i
-                                                class="lar la-eye icon"></i></a></li>
-                                    <li><a href="#" data-attributes="[]" data-id="2" class="add_to_wishlist_ajax">Add
-                                            to Wish List <i class="lar la-heart icon"></i></a></li>
+                @foreach ($releted_products as $releted_product)
+                    <div class="col-lg-12">
+                        <div class="single-new-collection-item single-product-item">
+                            <div class="product-img-box">
+                                <a href="#">
+                                    <img src="{{ asset('admin/upload-product/' . $releted_product->product_image) }}"
+                                        alt="" />
+                                </a>
+                                <div class="hover">
+                                    <ul class="list">
+                                        <li><a href="#" id="quickview" class="quick-view"
+                                                data-title='Blue Denim Ladies' data-slug='blue-denim-ladies'
+                                                data-summary='Thundercats are on the move, Thundercats are loose. Feel the magic, hear the roar, Thundercats are loose. Thunder, thunder, thunder, Thundercats! Thunder, thunder, thunder, Thundercats! Thunder, thunder, thunder, Thundercats! Thunder, thunder, thunder, Thundercats! Thundercats!'
+                                                data-price='$15.00' data-sale-price='$12.00' data-attributes='[]'
+                                                data-category='Women&#039;s Style' data-subcategory='[]'
+                                                data-category-url='https://bytesed.com/laravel/zaika/product/category/3'
+                                                data-image='https://bytesed.com/laravel/zaika/assets/uploads/media-uploader/appealing-young-woma-pp5ig1638249594.jpg'
+                                                data-rating='' data-inventory='SKU-PBXYZ3' data-in-stock='148'>Quickview
+                                                <i class="lar la-eye icon"></i></a></li>
+                                        <li><a href="#" data-attributes="[]" data-id="2"
+                                                class="add_to_wishlist_ajax">Add
+                                                to Wish List <i class="lar la-heart icon"></i></a></li>
 
-                                    <li><a href="#" data-id="2" class="add_to_compare_ajax">Compare <i
-                                                class="las la-retweet icon"></i></a></li>
+                                        <li><a href="#" data-id="2" class="add_to_compare_ajax">Compare <i
+                                                    class="las la-retweet icon"></i></a></li>
 
-                                    <li><a href="#" data-attributes="[]" data-id="2" class="add_to_cart_ajax">Add to
-                                            Cart <i class="las la-shopping-cart icon"></i></a></li>
-                                </ul>
+                                        <li><a href="#" data-attributes="[]" data-id="2" class="add_to_cart_ajax">Add
+                                                to
+                                                Cart <i class="las la-shopping-cart icon"></i></a></li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <div class="product-details-wrap">
-                            <h3 class="product-title"><a
-                                    href="https://bytesed.com/laravel/zaika/product/blue-denim-ladies">Blue Denim
-                                    Ladies</a></h3>
-                            <div class="product-price-details">
-                                <ul class="list">
-                                    <li class="price">$12.00</li>
-                                    <li class="price"><del>$15.00</del></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="single-new-collection-item single-product-item">
-                        <div class="product-img-box">
-                            <a href="https://bytesed.com/laravel/zaika/product/casual-shirt">
-                                <img src="https://bytesed.com/laravel/zaika/assets/uploads/media-uploader/grid-glad-young-woman-vin-wxnbt1638271100.jpg"
-                                    alt="" />
-                            </a>
-                            <div class="hover">
-                                <ul class="list">
-                                    <li><a href="#" id="quickview" class="quick-view" data-title='Casual Shirt'
-                                            data-slug='casual-shirt'
-                                            data-summary='I never spend much time in school but I taught ladies plenty. It&rsquo;s true I hire my body out for pay, hey hey. I&rsquo;ve gotten burned over Cheryl Tiegs, blown up for Raquel Welch. But when I end up in the hay it&rsquo;s only hay, hey hey. I might jump an open drawbridge, or Tarzan from a vine. &rsquo;Cause I&rsquo;m the unknown stuntman that makes Eastwood look so fine.'
-                                            data-price='$35.00' data-sale-price='$30.00' data-attributes='[]'
-                                            data-category='Women&#039;s Style'
-                                            data-subcategory='[{&quot;name&quot;:&quot;Snacks&quot;,&quot;url&quot;:&quot;https:\/\/bytesed.com\/laravel\/zaika\/product\/subcategory\/3&quot;},{&quot;name&quot;:&quot;Beverages&quot;,&quot;url&quot;:&quot;https:\/\/bytesed.com\/laravel\/zaika\/product\/subcategory\/4&quot;}]'
-                                            data-category-url='https://bytesed.com/laravel/zaika/product/category/3'
-                                            data-image='https://bytesed.com/laravel/zaika/assets/uploads/media-uploader/glad-young-woman-vin-wxnbt1638271100.jpg'
-                                            data-rating='' data-inventory='SKU-PBXYZ2' data-in-stock='0'>Quickview <i
-                                                class="lar la-eye icon"></i></a></li>
-                                    <li><a href="#" data-attributes="[]" data-id="3" class="add_to_wishlist_ajax">Add
-                                            to Wish List <i class="lar la-heart icon"></i></a></li>
-
-                                    <li><a href="#" data-id="3" class="add_to_compare_ajax">Compare <i
-                                                class="las la-retweet icon"></i></a></li>
-
-                                    <li><a href="#" data-attributes="[]" data-id="3" class="add_to_cart_ajax">Add to
-                                            Cart <i class="las la-shopping-cart icon"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-details-wrap">
-                            <h3 class="product-title"><a
-                                    href="https://bytesed.com/laravel/zaika/product/casual-shirt">Casual Shirt</a></h3>
-                            <div class="product-price-details">
-                                <ul class="list">
-                                    <li class="price">$30.00</li>
-                                    <li class="price"><del>$35.00</del></li>
-                                </ul>
+                            <div class="product-details-wrap">
+                                <h3 class="product-title"><a
+                                        href="#">{{ $releted_product->name }}</a>
+                                    </h3>
+                                <div class="product-price-details">
+                                    <ul class="list">
+                                        <li class="price">${{ $releted_product->seal_price }}</li>
+                                        <li class="price"><del>${{ $releted_product->regular_price }}</del></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="single-new-collection-item single-product-item">
-                        <div class="product-img-box">
-                            <a href="https://bytesed.com/laravel/zaika/product/black-tops">
-                                <img src="https://bytesed.com/laravel/zaika/assets/uploads/media-uploader/grid-woman-suglasses-with-1k0bj1638270968.jpg"
-                                    alt="" />
-                            </a>
-                            <div class="hover">
-                                <ul class="list">
-                                    <li><a href="#" id="quickview" class="quick-view" data-title='Black Tops'
-                                            data-slug='black-tops'
-                                            data-summary='One for all and all for one, Muskehounds are always ready. One for all and all for one, helping everybody. One for all and all for one, it&rsquo;s a pretty story.'
-                                            data-price='$40.00' data-sale-price='$35.00' data-attributes='[]'
-                                            data-category='Women&#039;s Style' data-subcategory='[]'
-                                            data-category-url='https://bytesed.com/laravel/zaika/product/category/3'
-                                            data-image='https://bytesed.com/laravel/zaika/assets/uploads/media-uploader/woman-suglasses-with-1k0bj1638270968.jpg'
-                                            data-rating='' data-inventory='2CGo6Qaf6U' data-in-stock='162'>Quickview <i
-                                                class="lar la-eye icon"></i></a></li>
-                                    <li><a href="#" data-attributes="[]" data-id="4" class="add_to_wishlist_ajax">Add
-                                            to Wish List <i class="lar la-heart icon"></i></a></li>
-
-                                    <li><a href="#" data-id="4" class="add_to_compare_ajax">Compare <i
-                                                class="las la-retweet icon"></i></a></li>
-
-                                    <li><a href="#" data-attributes="[]" data-id="4" class="add_to_cart_ajax">Add to
-                                            Cart <i class="las la-shopping-cart icon"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-details-wrap">
-                            <h3 class="product-title"><a
-                                    href="https://bytesed.com/laravel/zaika/product/black-tops">Black Tops</a></h3>
-                            <div class="product-price-details">
-                                <ul class="list">
-                                    <li class="price">$35.00</li>
-                                    <li class="price"><del>$40.00</del></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="single-new-collection-item single-product-item">
-                        <div class="product-img-box">
-                            <a href="https://bytesed.com/laravel/zaika/product/flowery-frock">
-                                <img src="https://bytesed.com/laravel/zaika/assets/uploads/media-uploader/grid-portrait-beautiful-d-i6ezw1638271057.jpg"
-                                    alt="" />
-                            </a>
-                            <div class="hover">
-                                <ul class="list">
-                                    <li><a href="#" id="quickview" class="quick-view" data-title='Flowery Frock'
-                                            data-slug='flowery-frock'
-                                            data-summary='One for all and all for one, Muskehounds are always ready. One for all and all for one, helping everybody. One for all and all for one, it&rsquo;s a pretty story.'
-                                            data-price='$40.00' data-sale-price='$35.00'
-                                            data-attributes='{&quot;2&quot;:[{&quot;type&quot;:&quot;Size&quot;,&quot;name&quot;:&quot;M&quot;,&quot;additional_price&quot;:&quot;12&quot;},{&quot;type&quot;:&quot;Size&quot;,&quot;name&quot;:&quot;XL&quot;,&quot;additional_price&quot;:&quot;11&quot;}]}'
-                                            data-category='Women&#039;s Style'
-                                            data-subcategory='[{&quot;name&quot;:&quot;Snacks&quot;,&quot;url&quot;:&quot;https:\/\/bytesed.com\/laravel\/zaika\/product\/subcategory\/3&quot;},{&quot;name&quot;:&quot;Beverages&quot;,&quot;url&quot;:&quot;https:\/\/bytesed.com\/laravel\/zaika\/product\/subcategory\/4&quot;}]'
-                                            data-category-url='https://bytesed.com/laravel/zaika/product/category/3'
-                                            data-image='https://bytesed.com/laravel/zaika/assets/uploads/media-uploader/portrait-beautiful-d-i6ezw1638271057.jpg'
-                                            data-rating='' data-inventory='Mm2zc3ipUJ' data-in-stock='4'>Quickview <i
-                                                class="lar la-eye icon"></i></a></li>
-
-                                    <li><a href="https://bytesed.com/laravel/zaika/product/flowery-frock">Add to Wish
-                                            List <i class="lar la-heart icon"></i></a></li>
-
-                                    <li><a href="#" data-id="18" class="add_to_compare_ajax">Compare <i
-                                                class="las la-retweet icon"></i></a></li>
-
-                                    <li><a href="https://bytesed.com/laravel/zaika/product/flowery-frock">View Options
-                                            <i class="las la-eye"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-details-wrap">
-                            <h3 class="product-title"><a
-                                    href="https://bytesed.com/laravel/zaika/product/flowery-frock">Flowery Frock</a>
-                            </h3>
-                            <div class="product-price-details">
-                                <ul class="list">
-                                    <li class="price">$35.00</li>
-                                    <li class="price"><del>$40.00</del></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="single-new-collection-item single-product-item">
-                        <div class="product-img-box">
-                            <a href="https://bytesed.com/laravel/zaika/product/tinted-sunglass">
-                                <img src="https://bytesed.com/laravel/zaika/assets/uploads/media-uploader/grid-portrait-pretty-lady-ejkko1638270922.jpg"
-                                    alt="" />
-                            </a>
-                            <div class="hover">
-                                <ul class="list">
-                                    <li><a href="#" id="quickview" class="quick-view" data-title='Tinted Sunglass'
-                                            data-slug='tinted-sunglass'
-                                            data-summary='Knight Rider, a shadowy flight into the dangerous world of a man who does not exist. Michael Knight, a young loner on a crusade to champion the cause of the innocent, the helpless in a world of criminals who operate above the law.'
-                                            data-price='$42.00' data-sale-price='$35.00' data-attributes='[]'
-                                            data-category='Women&#039;s Style' data-subcategory='[]'
-                                            data-category-url='https://bytesed.com/laravel/zaika/product/category/3'
-                                            data-image='https://bytesed.com/laravel/zaika/assets/uploads/media-uploader/portrait-pretty-lady-ejkko1638270922.jpg'
-                                            data-rating='' data-inventory='qKo3xSLF3b' data-in-stock='6'>Quickview <i
-                                                class="lar la-eye icon"></i></a></li>
-                                    <li><a href="#" data-attributes="[]" data-id="25" class="add_to_wishlist_ajax">Add
-                                            to Wish List <i class="lar la-heart icon"></i></a></li>
-
-                                    <li><a href="#" data-id="25" class="add_to_compare_ajax">Compare <i
-                                                class="las la-retweet icon"></i></a></li>
-
-                                    <li><a href="#" data-attributes="[]" data-id="25" class="add_to_cart_ajax">Add to
-                                            Cart <i class="las la-shopping-cart icon"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-details-wrap">
-                            <h3 class="product-title"><a
-                                    href="https://bytesed.com/laravel/zaika/product/tinted-sunglass">Tinted Sunglass</a>
-                            </h3>
-                            <div class="product-price-details">
-                                <ul class="list">
-                                    <li class="price">$35.00</li>
-                                    <li class="price"><del>$42.00</del></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="single-new-collection-item single-product-item">
-                        <div class="product-img-box">
-                            <a href="https://bytesed.com/laravel/zaika/product/womens-sunglass">
-                                <img src="https://bytesed.com/laravel/zaika/assets/uploads/media-uploader/grid-appealing-young-woma-pp5ig1638249594.jpg"
-                                    alt="" />
-                            </a>
-                            <div class="hover">
-                                <ul class="list">
-                                    <li><a href="#" id="quickview" class="quick-view"
-                                            data-title='Women&#039;s Sunglass' data-slug='womens-sunglass'
-                                            data-summary='Knight Rider, a shadowy flight into the dangerous world of a man who does not exist. Michael Knight, a young loner on a crusade to champion the cause of the innocent, the helpless in a world of criminals who operate above the law.'
-                                            data-price='$42.00' data-sale-price='$35.00' data-attributes='[]'
-                                            data-category='Women&#039;s Style'
-                                            data-subcategory='[{&quot;name&quot;:&quot;Snacks&quot;,&quot;url&quot;:&quot;https:\/\/bytesed.com\/laravel\/zaika\/product\/subcategory\/3&quot;},{&quot;name&quot;:&quot;Beverages&quot;,&quot;url&quot;:&quot;https:\/\/bytesed.com\/laravel\/zaika\/product\/subcategory\/4&quot;},{&quot;name&quot;:&quot;Breakfast&quot;,&quot;url&quot;:&quot;https:\/\/bytesed.com\/laravel\/zaika\/product\/subcategory\/5&quot;}]'
-                                            data-category-url='https://bytesed.com/laravel/zaika/product/category/3'
-                                            data-image='https://bytesed.com/laravel/zaika/assets/uploads/media-uploader/appealing-young-woma-pp5ig1638249594.jpg'
-                                            data-rating='' data-inventory='FSjPuWMIf1' data-in-stock='0'>Quickview <i
-                                                class="lar la-eye icon"></i></a></li>
-                                    <li><a href="#" data-attributes="[]" data-id="26" class="add_to_wishlist_ajax">Add
-                                            to Wish List <i class="lar la-heart icon"></i></a></li>
-
-                                    <li><a href="#" data-id="26" class="add_to_compare_ajax">Compare <i
-                                                class="las la-retweet icon"></i></a></li>
-
-                                    <li><a href="#" data-attributes="[]" data-id="26" class="add_to_cart_ajax">Add to
-                                            Cart <i class="las la-shopping-cart icon"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-details-wrap">
-                            <h3 class="product-title"><a
-                                    href="https://bytesed.com/laravel/zaika/product/womens-sunglass">Women&#039;s
-                                    Sunglass</a></h3>
-                            <div class="product-price-details">
-                                <ul class="list">
-                                    <li class="price">$35.00</li>
-                                    <li class="price"><del>$42.00</del></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="single-new-collection-item single-product-item">
-                        <div class="product-img-box">
-                            <a href="https://bytesed.com/laravel/zaika/product/stylish-glass-for-women">
-                                <img src="https://bytesed.com/laravel/zaika/assets/uploads/media-uploader/grid-stunning-curly-femal-ae4nx1638249534.jpg"
-                                    alt="" />
-                            </a>
-                            <div class="hover">
-                                <ul class="list">
-                                    <li><a href="#" id="quickview" class="quick-view"
-                                            data-title='Stylish Glass For Women' data-slug='stylish-glass-for-women'
-                                            data-summary='I never spend much time in school but I taught ladies plenty. It&rsquo;s true I hire my body out for pay, hey hey. I&rsquo;ve gotten burned over Cheryl Tiegs, blown up for Raquel Welch. But when I end up in the hay it&rsquo;s only hay, hey hey. I might jump an open drawbridge, or Tarzan from a vine. &rsquo;Cause I&rsquo;m the unknown stuntman that makes Eastwood look so fine.'
-                                            data-price='$35.00' data-sale-price='$30.00' data-attributes='[]'
-                                            data-category='Women&#039;s Style' data-subcategory='[]'
-                                            data-category-url='https://bytesed.com/laravel/zaika/product/category/3'
-                                            data-image='https://bytesed.com/laravel/zaika/assets/uploads/media-uploader/stunning-curly-femal-ae4nx1638249534.jpg'
-                                            data-rating='' data-inventory='WFY-002' data-in-stock='0'>Quickview <i
-                                                class="lar la-eye icon"></i></a></li>
-                                    <li><a href="#" data-attributes="[]" data-id="30" class="add_to_wishlist_ajax">Add
-                                            to Wish List <i class="lar la-heart icon"></i></a></li>
-
-                                    <li><a href="#" data-id="30" class="add_to_compare_ajax">Compare <i
-                                                class="las la-retweet icon"></i></a></li>
-
-                                    <li><a href="#" data-attributes="[]" data-id="30" class="add_to_cart_ajax">Add to
-                                            Cart <i class="las la-shopping-cart icon"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-details-wrap">
-                            <h3 class="product-title"><a
-                                    href="https://bytesed.com/laravel/zaika/product/stylish-glass-for-women">Stylish
-                                    Glass For Women</a></h3>
-                            <div class="product-price-details">
-                                <ul class="list">
-                                    <li class="price">$30.00</li>
-                                    <li class="price"><del>$35.00</del></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
