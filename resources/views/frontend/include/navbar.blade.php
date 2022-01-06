@@ -367,31 +367,126 @@
                     <div class="quick-cart">
                         <div class="arrow-up"></div>
                         <div id="top_minicart_container">
-                            <div id="top_cart_item_box"></div>
+                            <div id="top_cart_item_box">
+                                <div class="single-row">
+                                    <div class="img-box">
+                                        <img src="https://bytesed.com/laravel/zaika/assets/uploads/media-uploader/grid-portrait-pretty-lady-ejkko1638270922.jpg"
+                                            alt="">
+                                    </div>
+                                    <div class="disc">
+                                        <a href="https://bytesed.com/laravel/zaika/product/tinted-sunglass">
+                                            <span class="info">Tinted Sunglass</span>
+                                        </a>
+                                    </div>
+                                    <div class="quant">
+                                        <span class="quant-num">1</span>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="price">
+                                            $35.00
+                                        </span>
+                                        <span class="price">
+                                            <del>$42.00</del>
+                                        </span>
+                                    </div>
+                                    <div class="remove-box">
+                                        <a href="#" class="remove_cart_item" data-id="25"
+                                            data-attr="{&quot;type&quot;:&quot;Campaign Product&quot;,&quot;price&quot;:35}">
+                                            <i class="las la-trash"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="single-row">
+                                    <div class="img-box">
+                                        <img src="https://bytesed.com/laravel/zaika/assets/uploads/media-uploader/grid-full-length-portrait-ipb7u1638271011.jpg"
+                                            alt="">
+                                    </div>
+                                    <div class="disc">
+                                        <a href="https://bytesed.com/laravel/zaika/product/red-tops">
+                                            <span class="info">Red Tops</span>
+                                        </a>
+                                    </div>
+                                    <div class="quant">
+                                        <span class="quant-num">1</span>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="price">
+                                            $35.00
+                                        </span>
+                                        <span class="price">
+                                            <del>$40.00</del>
+                                        </span>
+                                    </div>
+                                    <div class="remove-box">
+                                        <a href="#" class="remove_cart_item" data-id="21"
+                                            data-attr="{&quot;type&quot;:&quot;Campaign Product&quot;,&quot;price&quot;:32}">
+                                            <i class="las la-trash"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="total-pricing">
                                 <div class="total">
                                     <span class="total">SUB TOTAL:</span>
-                                    <span class="amount" id="top_cart_subtotal">00.00</span>
+                                    <span class="amount" id="top_cart_subtotal">$67.00</span>
                                 </div>
                             </div>
                         </div>
                         <div class="btn-wrapper">
-                            <a href="{{ url('/checkout') }}" class="default-btn">checkout</a>
-                            <a href="{{ url('/cart') }}" class="default-btn">view
+                            <a href="https://bytesed.com/laravel/zaika/checkout" class="default-btn">checkout</a>
+                            <a href="https://bytesed.com/laravel/zaika/product/cart/all" class="default-btn">view
                                 cart</a>
                         </div>
                     </div>
                 </li>
                 <li class="account account-option">
-                    <a href="https://bytesed.com/laravel/zaika/login">
-                        <span class="text"> account</span>
+                    <a href="#">
+                        <span class="text">Account</span>
                         <i class="lar la-user icon"></i>
                     </a>
+
                     <div class="name-list">
-                        <span class="lists"><a
-                                href="https://bytesed.com/laravel/zaika/login?type=login">Login</a></span>
-                        <span class="lists"><a
-                                href="https://bytesed.com/laravel/zaika/register">Register</a></span>
+                        @guest
+                            @if (Route::has('login'))
+                                <span class="lists">
+                                    <a href="{{ route('login') }}">Login</a>
+                                </span>
+                            @endif
+                            @if (Route::has('register'))
+                                <span class="lists">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </span>
+                            @endif
+                        @else
+                            <span class="lists">
+                                <a>Hi, {{ Auth::user()->name }} :)</a>
+                            </span>
+
+                            <span class="lists">
+                                <a href="#" class="nav-link">Dashboard</a>
+                            </span>
+
+                            <span class="lists">
+                                <a href="#" class="nav-link">Edit Profile</a>
+                            </span>
+
+                            <span class="lists">
+                                <a href="#" class="nav-link">My Orders</a>
+                            </span>
+
+                            <span class="lists">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                                                        document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    class="d-none">
+                                    @csrf
+                                </form>
+                            </span>
+                        @endguest
                     </div>
                 </li>
             </ul>

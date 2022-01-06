@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
@@ -127,6 +128,11 @@ Route::get('/colors-status', [ColorController::class, 'change_status'])->name('c
 
 
 //____________________ Frontend Route----->>>>>
+// User Login/Register + View
+Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/about', [AboutController::class, 'about']);
 Route::get('/product', [App\Http\Controllers\Frontend\ProductController::class, 'product']);
@@ -135,4 +141,5 @@ Route::get('/contact', [ContactController::class, 'contact']);
 Route::get('/cart', [CartController::class, 'cart']);
 Route::get('/checkout', [CheckoutController::class, 'checkout']);
 
+// Product View Page
 Route::get('/view-product/{id}', [HomeController::class, 'view_product']);
