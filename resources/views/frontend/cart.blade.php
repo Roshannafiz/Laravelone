@@ -54,73 +54,69 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="thumb">
-                                                <a href="https://bytesed.com/laravel/zaika/product/tinted-sunglass">
-                                                    <img src="https://bytesed.com/laravel/zaika/assets/uploads/media-uploader/grid-portrait-pretty-lady-ejkko1638270922.jpg"
-                                                        alt="" />
-                                                </a>
-                                                <a href="https://bytesed.com/laravel/zaika/product/tinted-sunglass"
-                                                    class="product-name">Tinted
-                                                    Sunglass (Campaign Product)</a>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="price-box">
-                                                <span class="price">$35.00</span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="input-group">
-                                                <input class="quantity form-control item_quantity_info" type="number"
-                                                    min="1" max="10000000" data-id="25"
-                                                    data-attr="{&quot;type&quot;:&quot;Campaign Product&quot;,&quot;price&quot;:35}"
-                                                    value="1">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="total">
-                                                <span class="price">$35.00</span>
-                                                <a href="#" class="remove_cart_item" data-id="25"
-                                                    data-attr="{&quot;type&quot;:&quot;Campaign Product&quot;,&quot;price&quot;:35}">
-                                                    <i class="las la-trash"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="thumb">
-                                                <a href="https://bytesed.com/laravel/zaika/product/tinted-sunglass">
-                                                    <img src="https://bytesed.com/laravel/zaika/assets/uploads/media-uploader/grid-portrait-pretty-lady-ejkko1638270922.jpg"
-                                                        alt="" />
-                                                </a>
-                                                <a href="https://bytesed.com/laravel/zaika/product/tinted-sunglass"
-                                                    class="product-name">Tinted
-                                                    Sunglass</a>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="price-box">
-                                                <span class="price">$35.00</span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="input-group">
-                                                <input class="quantity form-control item_quantity_info" type="number"
-                                                    min="1" max="10000000" data-id="25" data-attr="[]" value="1">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="total">
-                                                <span class="price">$35.00</span>
-                                                <a href="#" class="remove_cart_item" data-id="25" data-attr="[]">
-                                                    <i class="las la-trash"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    @php $total = 0; @endphp
+                                    @if (session('cart'))
+                                        @foreach (session('cart') as $id => $product)
+                                            @php
+                                                $sub_total = $product['sealprice'] * $product['quantity'];
+                                                $total += $sub_total;
+                                            @endphp
+                                            <tr>
+                                                <td>
+                                                    <div class="thumb">
+                                                        <a href="#">
+                                                            <img src="{{ asset('admin/upload-product/' . $product['image']) }}"
+                                                                alt="Product Image" />
+                                                        </a>
+                                                        <a href="#" class="product-name">{{ $product['name'] }}</a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="price-box">
+                                                        <span
+                                                            class="price">{{ $product['sealprice'] }}</span>
+                                                    </div>
+                                                </td>
+                                                {{-- <td>
+                                                    <div class="input-group">
+                                                        <input class="quantity form-control"
+                                                            type="number" min="1" max="10000000"
+                                                            value="{{ $product['quantity'] }}">
+                                                    </div>
+                                                </td> --}}
+
+                                                <div class="input-group">
+                                                    <td class="cart-product-quantity" width="150px">
+                                                        <div class="input-group quantity">
+                                                            <!--- Decrement Btn -->
+                                                            <div class="input-group-prepend decrement-btn mr-2"
+                                                                style="cursor: pointer">
+                                                                <span class="input-group-text">-</span>
+                                                            </div>
+
+                                                            <input type="text" class="qty-input form-control"
+                                                                maxlength="2" max="10"
+                                                                value="{{ $product['quantity'] }}">
+                                                            <!--- Increment Btn -->
+                                                            <div class="input-group-append increment-btn"
+                                                                style="cursor: pointer">
+                                                                <span class="input-group-text">+</span>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </div>
+
+                                                <td>
+                                                    <div class="total">
+                                                        <span class="price">${{ $sub_total }}</span>
+                                                        <a href="#" class="remove_cart_item">
+                                                            <i class="las la-trash"></i>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
@@ -130,7 +126,7 @@
                                 <a href="#" class="default-btn update_cart">Update Cart</a>
                             </div>
                             <div class="right">
-                                <a href="https://bytesed.com/laravel/zaika/product" class="default-btn">Continue
+                                <a href="{{ url('/product') }}" class="default-btn">Continue
                                     Shopping</a>
                             </div>
                         </div>
@@ -159,8 +155,8 @@
                         <div class="cart-total">
                             <h4 class="title">Cart Total</h4>
                             <div class="cost-name-amount">
-                                <span class="same sub">sub total:</span>
-                                <span class="same sub-amount">$70.00</span>
+                                <span class="same total">total:</span>
+                                <span class="same total-amount">${{ $total }}</span>
                             </div>
                             <div class="btn-wrapper">
                                 <form action="https://bytesed.com/laravel/zaika/checkout">
@@ -202,6 +198,7 @@
     <!------- Include Script file -------->
     @include('frontend.script')
     <!------- Include Script file -------->
+
 </body>
 
 </html>

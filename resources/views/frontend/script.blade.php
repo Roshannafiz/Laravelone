@@ -19,5 +19,6 @@
     <!--- Ui js ---->
     <script src="https://bytesed.com/laravel/zaika/assets/common/js/jquery-ui.min.js"></script>
     <!-- main js -->
+    <script src="{{ asset('frontend/assets/js/my_frontend.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/dynamic-script.js') }}"></script>

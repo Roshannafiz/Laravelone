@@ -138,8 +138,12 @@ Route::get('/about', [AboutController::class, 'about']);
 Route::get('/product', [App\Http\Controllers\Frontend\ProductController::class, 'product']);
 Route::get('/blog', [BlogController::class, 'blog']);
 Route::get('/contact', [ContactController::class, 'contact']);
-Route::get('/cart', [CartController::class, 'cart']);
+Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 Route::get('/checkout', [CheckoutController::class, 'checkout']);
 
 // Product View Page
 Route::get('/view-product/{id}', [HomeController::class, 'view_product']);
+
+// Add To Cart
+Route::get('add-to-cart/{product}', [CartController::class, 'addToCart'])->name('add-cart');
+

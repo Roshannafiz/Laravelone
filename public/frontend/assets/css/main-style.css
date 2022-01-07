@@ -1506,7 +1506,7 @@ object {
 }
 
 .quick-cart .btn-wrapper {
-    padding: 15px;
+    padding: 0px 15px;
 }
 
 .quick-cart .btn-wrapper .default-btn:nth-child(1) {
@@ -6697,11 +6697,11 @@ ul.wp-block-latest-posts.is-grid.alignwide {
 }
 
 .cart-box table tr td div {
-    padding: 25px 0;
+    padding: 0px 0;
 }
 
 .cart-box table tr td .input-group {
-    width: 100px;
+    width: 118px;
 }
 
 .cart-box table tr td .thumb .product-name {

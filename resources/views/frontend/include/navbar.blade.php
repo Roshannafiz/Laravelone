@@ -362,80 +362,72 @@
                 <li class="cart position-relative">
                     <a href="{{ url('/cart') }}">
                         <i class="las la-cart-plus icon"></i>
-                        <span class="cart-badge" id="cart_badge">587</span>
+                        <span class="cart-badge" id="cart_badge">
+                            @php
+                                $cart_array = session()->get('cart');
+                            @endphp
+                            <?= count($cart_array) ?>
+                        </span>
                     </a>
                     <div class="quick-cart">
                         <div class="arrow-up"></div>
-                        <div id="top_minicart_container">
-                            <div id="top_cart_item_box">
-                                <div class="single-row">
-                                    <div class="img-box">
-                                        <img src="https://bytesed.com/laravel/zaika/assets/uploads/media-uploader/grid-portrait-pretty-lady-ejkko1638270922.jpg"
-                                            alt="">
+                        <div>
+                            @php $total = 0; @endphp
+                            @if (session('cart'))
+                                @foreach (session('cart') as $id => $product)
+                                    @php
+                                        $sub_total = $product['sealprice'] * $product['quantity'];
+                                        $total += $sub_total;
+                                    @endphp
+
+                                    <div id="top_minicart_container">
+                                        <div id="top_cart_item_box">
+                                            <div class="single-row">
+                                                <div class="img-box">
+                                                    <img src="{{ asset('admin/upload-product/' . $product['image']) }}"
+                                                        alt="">
+                                                </div>
+                                                <div class="disc">
+                                                    <a href="#">
+                                                        <span class="info">{{ $product['name'] }}</span>
+                                                    </a>
+                                                </div>
+                                                <div class="quant">
+                                                    <span class="quant-num">{{ $product['quantity'] }}</span>
+                                                </div>
+                                                <div class="price-box">
+                                                    <span class="price">
+                                                        {{ $product['sealprice'] }}
+                                                    </span>
+                                                </div>
+                                                <div class="remove-box">
+                                                    <a href="#" class="remove_cart_item" data-id="25"
+                                                        data-attr="{&quot;type&quot;:&quot;Campaign Product&quot;,&quot;price&quot;:35}">
+                                                        <i class="las la-trash"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="disc">
-                                        <a href="https://bytesed.com/laravel/zaika/product/tinted-sunglass">
-                                            <span class="info">Tinted Sunglass</span>
-                                        </a>
-                                    </div>
-                                    <div class="quant">
-                                        <span class="quant-num">1</span>
-                                    </div>
-                                    <div class="price-box">
-                                        <span class="price">
-                                            $35.00
-                                        </span>
-                                        <span class="price">
-                                            <del>$42.00</del>
-                                        </span>
-                                    </div>
-                                    <div class="remove-box">
-                                        <a href="#" class="remove_cart_item" data-id="25"
-                                            data-attr="{&quot;type&quot;:&quot;Campaign Product&quot;,&quot;price&quot;:35}">
-                                            <i class="las la-trash"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="single-row">
-                                    <div class="img-box">
-                                        <img src="https://bytesed.com/laravel/zaika/assets/uploads/media-uploader/grid-full-length-portrait-ipb7u1638271011.jpg"
-                                            alt="">
-                                    </div>
-                                    <div class="disc">
-                                        <a href="https://bytesed.com/laravel/zaika/product/red-tops">
-                                            <span class="info">Red Tops</span>
-                                        </a>
-                                    </div>
-                                    <div class="quant">
-                                        <span class="quant-num">1</span>
-                                    </div>
-                                    <div class="price-box">
-                                        <span class="price">
-                                            $35.00
-                                        </span>
-                                        <span class="price">
-                                            <del>$40.00</del>
-                                        </span>
-                                    </div>
-                                    <div class="remove-box">
-                                        <a href="#" class="remove_cart_item" data-id="21"
-                                            data-attr="{&quot;type&quot;:&quot;Campaign Product&quot;,&quot;price&quot;:32}">
-                                            <i class="las la-trash"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                                @endforeach
+                            @endif
                             <div class="total-pricing">
                                 <div class="total">
                                     <span class="total">SUB TOTAL:</span>
-                                    <span class="amount" id="top_cart_subtotal">$67.00</span>
+                                    <span class="amount" id="top_cart_subtotal">${{ $total }}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="btn-wrapper">
-                            <a href="https://bytesed.com/laravel/zaika/checkout" class="default-btn">checkout</a>
-                            <a href="https://bytesed.com/laravel/zaika/product/cart/all" class="default-btn">view
+                            <a href="{{ url('/cart') }}" class="default-btn">view
                                 cart</a>
+                        </div>
+                        <div class="btn-wrapper">
+                            @if ($user = Auth::user())
+                                <a href="{{ url('/checkout') }}" class="default-btn">checkout</a>
+                            @else
+                                <a href="{{ route('login') }}" class="default-btn">checkout</a>
+                            @endif
                         </div>
                     </div>
                 </li>
@@ -477,7 +469,7 @@
                             <span class="lists">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                                                                        document.getElementById('logout-form').submit();">
+                                                                                                                                                                                                    document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 

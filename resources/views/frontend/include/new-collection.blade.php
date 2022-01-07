@@ -16,14 +16,21 @@
                                     src="{{ asset('admin/upload-product/' . $product->product_image) }}" alt="" /></a>
                             <div class="hover">
                                 <ul class="list">
-                                    <li><a href="#" data-attributes="[]" data-id="2"
-                                            class="add-to-cart add_to_wishlist_ajax">Add to Wish List <i
-                                                class="lar la-heart icon"></i></a></li>
-                                    <li><a href="#" data-id="2" class="add_to_compare_ajax">Compare <i
-                                                class="las la-retweet icon"></i></a></li>
-                                    <li><a href="#" data-attributes="[]" data-id="2"
-                                            class="add-to-cart add_to_cart_ajax">Add to Cart <i
-                                                class="las la-shopping-cart icon"></i></a></li>
+                                    <li>
+                                        <!------ Include Wishlist Button ---->
+                                        @include('frontend.product_btn.wishlist_button')
+                                        <!------ Include Wishlist Button ---->
+                                    </li>
+                                    <li>
+                                        <!------ Include Compare Button ---->
+                                        @include('frontend.product_btn.compare_button')
+                                        <!------ Include Compare Button ---->
+                                    </li>
+                                    <li>
+                                        <!------ Include Cart Button ---->
+                                        @include('frontend.product_btn.cart_button')
+                                        <!------ Include Cart Button ---->
+                                    </li>
                                     <li>
                                         <a href="#" class="quick-view call-modal" data-title='Blue Denim Ladies'
                                             data-slug='blue-denim-ladies'
