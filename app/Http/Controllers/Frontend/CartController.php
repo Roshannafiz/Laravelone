@@ -26,13 +26,13 @@ class CartController extends Controller
                 ]
             ];
             session()->put('cart', $cart);
-            return redirect()->route('cart')->with('message', "Added To Cart");
+            return redirect()->back()->with('message', "Item Added To Cart");
         }
 
         if (isset($cart[$product->id])) {
             $cart[$product->id]['quantity']++;
             session()->put('cart', $cart);
-            return redirect()->route('cart')->with('message', "Added To Cart");
+            return redirect()->back()->with('message', "Item Added To Cart");
         }
 
         $cart[$product->id] = [
@@ -43,6 +43,6 @@ class CartController extends Controller
         ];
 
         session()->put('cart', $cart);
-        return redirect()->route('cart')->with('message', "Added To Cart");
+        return redirect()->back()->with('message', "Item Added To Cart");
     }
 }

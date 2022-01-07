@@ -26,6 +26,8 @@
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Jost:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel=icon href="{{ asset('frontend/assets/img/favicon/favicon.png') }}" sizes="20x20" type="image/png">
+    <!-------- Toastr Css ------->
+    <link rel="stylesheet" href="{{ asset('admin/assets/toastr/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap.min-v4.6.0.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/line-awesome.min-v1.3.0.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/flaticon.css') }}">

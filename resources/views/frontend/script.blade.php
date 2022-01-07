@@ -14,6 +14,8 @@
     <script src="{{ asset('frontend/assets/js/loopcounter.js') }}"></script>
     <!-- wow js -->
     <script src="{{ asset('frontend/assets/js/wow.js') }}"></script>
+    <!-------- Toastr Message---------->
+    <script src="{{ asset('admin/assets/toastr/toastr.min.js') }}"></script>
     <!--- bootstrap-4 Rating Js --->
     <script src="https://bytesed.com/laravel/zaika/assets/frontend/js/bootstrap4-rating-input.js"></script>
     <!--- Ui js ---->
@@ -22,3 +24,28 @@
     <script src="{{ asset('frontend/assets/js/my_frontend.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/dynamic-script.js') }}"></script>
+
+    @if (session('message')) {
+        <script>
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "3000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            toastr["success"]("{{ session('message') }}")
+        </script>
+        }
+
+    @endif

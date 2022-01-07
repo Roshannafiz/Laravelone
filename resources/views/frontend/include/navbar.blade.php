@@ -366,7 +366,11 @@
                             @php
                                 $cart_array = session()->get('cart');
                             @endphp
-                            <?= count($cart_array) ?>
+                            @if (isset($cart_array))
+                                <?= count($cart_array) ?>
+                            @else
+                                <span>0</span>
+                            @endif
                         </span>
                     </a>
                     <div class="quick-cart">
@@ -397,7 +401,7 @@
                                                 </div>
                                                 <div class="price-box">
                                                     <span class="price">
-                                                        {{ $product['sealprice'] }}
+                                                        ${{ $product['sealprice'] }}
                                                     </span>
                                                 </div>
                                                 <div class="remove-box">
@@ -469,7 +473,7 @@
                             <span class="lists">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                                                                                                                                                                                    document.getElementById('logout-form').submit();">
+                                                                                                                                                                                                                                        document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 
