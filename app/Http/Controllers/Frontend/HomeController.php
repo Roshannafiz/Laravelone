@@ -7,15 +7,20 @@ use App\Models\Category;
 use App\Models\Color;
 use App\Models\Product;
 use App\Models\Size;
+use App\Models\Cart;
 use App\Models\SubCategory;
 use App\Models\Unit;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     public function index()
     {
+        $user_id = Auth::id();
+        $count = Cart::where('user_id', $user_id)->count();
+
         $categories = Category::all();
         $subcategories = SubCategory::all();
         $brands = Brand::all();
@@ -23,11 +28,13 @@ class HomeController extends Controller
         $sizes = Size::all();
         $colors = Color::all();
         $products = Product::where('status', 1)->latest()->limit(6)->get();
-        return view('frontend.master', compact('products'));
+        return view('frontend.master', compact('products', 'count'));
     }
-
     public function view_product($id)
     {
+        $user_id = Auth::id();
+        $count = Cart::where('user_id', $user_id)->count();
+
         $categories = Category::all();
         $subcategories = SubCategory::all();
         $brands = Brand::all();
@@ -40,6 +47,6 @@ class HomeController extends Controller
         $cat_id = $product->cat_id;
         $releted_products = Product::where('cat_id', $cat_id)->limit(6)->get();
 
-        return view('frontend.view_pages.view_product', compact('product', 'categories', 'subcategories', 'brands', 'units', 'sizes', 'colors', 'releted_products'));
+        return view('frontend.view_pages.view_product', compact('product', 'categories', 'subcategories', 'brands', 'units', 'sizes', 'colors', 'releted_products', 'count'));
     }
 }

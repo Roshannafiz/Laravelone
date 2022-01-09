@@ -2,7 +2,6 @@
 @include('frontend.head')
 <!------- Include head file -------->
 
-
 <body>
     <div class="preloader-inner">
         <ul class="preloader-main">

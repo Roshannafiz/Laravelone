@@ -363,22 +363,21 @@
                     <a href="{{ url('/cart') }}">
                         <i class="las la-cart-plus icon"></i>
                         <span class="cart-badge" id="cart_badge">
-                            @php
-                                $cart_array = session()->get('cart');
-                            @endphp
-                            @if (isset($cart_array))
-                                <?= count($cart_array) ?>
-                            @else
+                            @auth
+                                {{ $count }}
+                            @endauth
+
+                            @guest
                                 <span>0</span>
-                            @endif
+                            @endguest
                         </span>
                     </a>
                     <div class="quick-cart">
                         <div class="arrow-up"></div>
                         <div>
                             @php $total = 0; @endphp
-                            @if (session('cart'))
-                                @foreach (session('cart') as $id => $product)
+                            @if (session('count'))
+                                @foreach (session('count') as $product)
                                     @php
                                         $sub_total = $product['sealprice'] * $product['quantity'];
                                         $total += $sub_total;
@@ -473,7 +472,7 @@
                             <span class="lists">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                                                                                                                                                                                                                        document.getElementById('logout-form').submit();">
+                                                                                                                                                                                                                                                                        document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 

@@ -145,5 +145,8 @@ Route::get('/checkout', [CheckoutController::class, 'checkout']);
 Route::get('/view-product/{id}', [HomeController::class, 'view_product']);
 
 // Add To Cart
-Route::get('add-to-cart/{product}', [CartController::class, 'addToCart'])->name('add-cart');
+Route::post('/add-to-cart', [CartController::class, 'addtocart'])->name('addtocart');
 
+
+//Route::get('add-to-cart/{product}', [CartController::class, 'addToCart'])->name('add-cart');
+//Route::post('add_to_cart/{id}', [CartController::class, 'addToCart'])->name('addToCart');

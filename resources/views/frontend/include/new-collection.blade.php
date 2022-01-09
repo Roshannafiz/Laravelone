@@ -7,7 +7,8 @@
                 </div>
             </div>
         </div>
-        <div class="row new-collection-slider">
+        <div class="row new-collection-slider product_data">
+            @csrf
             @foreach ($products as $product)
                 <div class="col-lg-12">
                     <div class="single-new-collection-item single-product-item">

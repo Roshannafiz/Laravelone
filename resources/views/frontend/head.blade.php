@@ -63,6 +63,7 @@
     <title>Zaika - Ecommerce</title>
     <script src="{{ asset('frontend/assets/js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/jquery-migrate-3.3.2.js') }}"></script>
+
     <script>
         var siteurl = "zaika";
     </script>
