@@ -63,4 +63,41 @@ class CartController extends Controller
             return redirect()->back()->with('message', "Product Added In Cart");
         }
     }
+
+    // Session User Cart Item
+    static function Session_cartItems()
+    {
+        $session_id = Session::get('session_id');
+        return Cart::where(['session_id' => $session_id])->count();
+    }
+
+    // Login User Cart Item
+    static function Login_cartItems()
+    {
+        $user_id = Auth::id();
+        return Cart::where(['user_id' => $user_id])->count();
+    }
+
+
+    // Delete Cart Item
+    public function delete_cart(Request $request, $id)
+    {
+        if (Auth::check()) {
+            $prod_id = $id;
+            if (Cart::where('id', $prod_id)->where('user_id', Auth::id())->exists()) {
+                $cart_items = Cart::where('id', $prod_id)->where('user_id', Auth::id())->first();
+                $cart_items->delete();
+            }
+            //Cart::destroy($id);
+            return redirect()->back()->with('message', "Item Deleted Successfully");
+        } else {
+            $prod_id = $id;
+            $session_id = Session::get('session_id');
+            if (Cart::where('id', $prod_id)->where('session_id', $session_id)->exists()) {
+                $cart_items = Cart::where('id', $prod_id)->where('session_id', $session_id)->first();
+                $cart_items->delete();
+            }
+            return redirect()->back()->with('message', "Item Deleted Successfully");
+        }
+    }
 }

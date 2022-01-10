@@ -134,7 +134,7 @@ Route::get('/colors-status', [ColorController::class, 'change_status'])->name('c
 
 
 
-// User View + Login / Register / Logout / Email Check Usign Ajax
+// User View + Login / Register / Logout / Forgot Password / Email Check Usign Ajax
 Route::get('/register', [App\Http\Controllers\Frontend\UsersController::class, 'register']);
 Route::get('/login', [App\Http\Controllers\Frontend\UsersController::class, 'login']);
 
@@ -144,6 +144,9 @@ Route::post('/login', [App\Http\Controllers\Frontend\UsersController::class, 'lo
 
 Route::get('/logout', [App\Http\Controllers\Frontend\UsersController::class, 'LogoutUser'])->name('logout');
 Route::match(['get', 'post'], 'check-email', [App\Http\Controllers\Frontend\UsersController::class, 'CheckEmail'])->name('check-email');
+
+Route::match(['GET', 'POST'], 'forgot-password', [App\Http\Controllers\Frontend\UsersController::class, 'ForgotPassword']);
+
 
 
 Route::get('/', [HomeController::class, 'index']);
@@ -157,9 +160,6 @@ Route::get('/checkout', [CheckoutController::class, 'checkout']);
 // Product View Page
 Route::get('/view-product/{id}', [HomeController::class, 'view_product']);
 
-// Add To Cart
+// Add To Cart / Delete Cart
 Route::post('/add-to-cart', [CartController::class, 'addtocart'])->name('addtocart');
-
-
-//Route::get('add-to-cart/{product}', [CartController::class, 'addToCart'])->name('add-cart');
-//Route::post('add_to_cart/{id}', [CartController::class, 'addToCart'])->name('addToCart');
+Route::get('/delete_cart/{id}', [CartController::class, 'delete_cart'])->name('delete_cart');

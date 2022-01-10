@@ -1,3 +1,10 @@
+<?php
+use App\Models\Product;
+use App\Models\Cart;
+use App\Http\Controllers\Frontend\CartController;
+$total_S_item = CartController::Session_cartItems();
+$total_L_item = CartController::Login_cartItems();
+?>
 <!-- nav area start -->
 <nav class="navbar navbar-area navbar-expand-lg has-topbar nav-style-01">
     <div class="container nav-container">
@@ -363,49 +370,50 @@
                     <a href="{{ url('/cart') }}">
                         <i class="las la-cart-plus icon"></i>
                         <span class="cart-badge" id="cart_badge">
-                            @auth
-                                00
-                            @endauth
-
-                            @guest
-                                <span>0</span>
-                            @endguest
+                            @if ($user = Auth::user())
+                                <span>{{ $total_L_item }}</span>
+                            @else
+                                <span>{{ $total_S_item }}</span>
+                            @endif
                         </span>
                     </a>
                     <div class="quick-cart">
                         <div class="arrow-up"></div>
                         <div>
-                            @php $total = 0; @endphp
-                            @if (session('count'))
-                                @foreach (session('count') as $product)
+                            @php
+                                $userCartItems = Cart::userCartItems();
+                                $total = 0;
+                            @endphp
+
+                            @if ($userCartItems)
+                                @foreach ($userCartItems as $item)
                                     @php
-                                        $sub_total = $product['sealprice'] * $product['quantity'];
+                                        $sub_total = $item['product']['seal_price'] * $item['quantity'];
                                         $total += $sub_total;
                                     @endphp
-
                                     <div id="top_minicart_container">
                                         <div id="top_cart_item_box">
                                             <div class="single-row">
                                                 <div class="img-box">
-                                                    <img src="{{ asset('admin/upload-product/' . $product['image']) }}"
+                                                    <img src="{{ asset('admin/upload-product/' . $item['product']['product_image']) }}"
                                                         alt="">
                                                 </div>
                                                 <div class="disc">
                                                     <a href="#">
-                                                        <span class="info">{{ $product['name'] }}</span>
+                                                        <span
+                                                            class="info">{{ $item['product']['name'] }}</span>
                                                     </a>
                                                 </div>
                                                 <div class="quant">
-                                                    <span class="quant-num">{{ $product['quantity'] }}</span>
+                                                    <span class="quant-num">{{ $item['quantity'] }}</span>
                                                 </div>
                                                 <div class="price-box">
                                                     <span class="price">
-                                                        ${{ $product['sealprice'] }}
+                                                        ${{ $item['product']['seal_price'] }}
                                                     </span>
                                                 </div>
                                                 <div class="remove-box">
-                                                    <a href="#" class="remove_cart_item" data-id="25"
-                                                        data-attr="{&quot;type&quot;:&quot;Campaign Product&quot;,&quot;price&quot;:35}">
+                                                    <a href="{{ url('delete_cart/' . $item['id']) }}">
                                                         <i class="las la-trash"></i>
                                                     </a>
                                                 </div>
@@ -443,7 +451,7 @@
                     <div class="name-list">
                         @if (Auth::check())
                             <span class="lists">
-                                <a>Hi, {{ Auth::user()->name }} :)</a>
+                                <a>Hi, {{ Auth::user()->name }}</a>
                             </span>
 
                             <span class="lists">
@@ -459,9 +467,8 @@
                             </span>
 
                             <span class="lists">
-                                <a href="{{ route('logout') }}"
-                                    onclick="event.preventDefault() document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                <a href="{{ url('/logout') }}">
+                                    Logout
                                 </a>
                             </span>
 

@@ -50,7 +50,7 @@
                                             Came To Ajax......
                                         Sub Total Price ------>
                                     </span>
-                                    <a href="#" class="remove_cart_item" data-id="{{ $item['id'] }}">
+                                    <a href="{{ url('delete_cart/' . $item['id']) }}" class="remove_cart_item">
                                         <i class="las la-trash"></i>
                                     </a>
                                 </div>
@@ -83,7 +83,6 @@
                 suffered alteration in some.</p>
             <form action="https://bytesed.com/laravel/zaika/product/cart/ajax/coupon" method="POST"
                 class="discount-coupon">
-                <input type="hidden" name="_token" value="fRqxRHEGp3UxoFWfI7TNso2npmpp5ErTgBHApklZ">
                 <div class="form-group">
                     <input type="text" name="coupon" id="coupon_input" class="form-control"
                         placeholder="enter coupon code" value="">
@@ -113,7 +112,9 @@
         </div>
     </div>
 </div>
+
 <script>
+    // Manage Showing Cart Details Usign Ajax
     var gt = 0;
     var iprice = document.getElementsByClassName('iprice');
     var iquantity = document.getElementsByClassName('iquantity');

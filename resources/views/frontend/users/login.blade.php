@@ -71,9 +71,7 @@
                                         </div>
                                     </div>
                                     <div class="btn-pair">
-                                        <a id="forgot-password" data-toggle="tab" href="#forgot_password" role="tab"
-                                            aria-controls="forgot_password" aria-selected="false"
-                                            class="forgot-btn">
+                                        <a id="forgot-password" href="{{ url('/forgot-password') }}" class="forgot-btn">
                                             forgot password?
                                         </a>
 
