@@ -129,8 +129,21 @@ Route::get('/colors-status', [ColorController::class, 'change_status'])->name('c
 
 //____________________ Frontend Route----->>>>>
 // User Login/Register + View
-Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Auth::routes();
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+// User View + Login / Register / Logout / Email Check Usign Ajax
+Route::get('/register', [App\Http\Controllers\Frontend\UsersController::class, 'register']);
+Route::get('/login', [App\Http\Controllers\Frontend\UsersController::class, 'login']);
+
+
+Route::post('/register', [App\Http\Controllers\Frontend\UsersController::class, 'RegisterUser']);
+Route::post('/login', [App\Http\Controllers\Frontend\UsersController::class, 'loginUser']);
+
+Route::get('/logout', [App\Http\Controllers\Frontend\UsersController::class, 'LogoutUser'])->name('logout');
+Route::match(['get', 'post'], 'check-email', [App\Http\Controllers\Frontend\UsersController::class, 'CheckEmail'])->name('check-email');
 
 
 Route::get('/', [HomeController::class, 'index']);

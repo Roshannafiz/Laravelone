@@ -364,7 +364,7 @@
                         <i class="las la-cart-plus icon"></i>
                         <span class="cart-badge" id="cart_badge">
                             @auth
-                                {{ $count }}
+                                00
                             @endauth
 
                             @guest
@@ -429,7 +429,7 @@
                             @if ($user = Auth::user())
                                 <a href="{{ url('/checkout') }}" class="default-btn">checkout</a>
                             @else
-                                <a href="{{ route('login') }}" class="default-btn">checkout</a>
+                                <a href="{{ url('/login') }}" class="default-btn">checkout</a>
                             @endif
                         </div>
                     </div>
@@ -441,24 +441,13 @@
                     </a>
 
                     <div class="name-list">
-                        @guest
-                            @if (Route::has('login'))
-                                <span class="lists">
-                                    <a href="{{ route('login') }}">Login</a>
-                                </span>
-                            @endif
-                            @if (Route::has('register'))
-                                <span class="lists">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </span>
-                            @endif
-                        @else
+                        @if (Auth::check())
                             <span class="lists">
                                 <a>Hi, {{ Auth::user()->name }} :)</a>
                             </span>
 
                             <span class="lists">
-                                <a href="#" class="nav-link">Dashboard</a>
+                                <a href="{{ url('my_account') }}">My Account</a>
                             </span>
 
                             <span class="lists">
@@ -470,18 +459,21 @@
                             </span>
 
                             <span class="lists">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                                                                                                                                                                                                                                                        document.getElementById('logout-form').submit();">
+                                <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault() document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                    class="d-none">
-                                    @csrf
-                                </form>
                             </span>
-                        @endguest
+
+                        @else
+                            <span class="lists">
+                                <a href="{{ url('/login') }}">Login</a>
+                            </span>
+
+                            <span class="lists">
+                                <a href="{{ url('/register') }}">Register</a>
+                            </span>
+                        @endif
                     </div>
                 </li>
             </ul>

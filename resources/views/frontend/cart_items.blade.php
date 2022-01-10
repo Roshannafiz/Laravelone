@@ -12,12 +12,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $total_price = 0; ?>
                     @foreach ($userCartItems as $item)
-                        @php
-                            $sub_total = $item['product']['seal_price'] * $item['quantity'];
-                            $total_price += $sub_total;
-                        @endphp
                         <tr>
                             <td>
                                 <div class="thumb">
@@ -32,44 +27,30 @@
                                 <div class="price-box">
                                     <span class="price">
                                         {{ $item['product']['seal_price'] }}
+                                        <input type="hidden" class="iprice"
+                                            value="{{ $item['product']['seal_price'] }}">
                                     </span>
                                 </div>
                             </td>
-                            {{-- <td>
-                                <div class="input-group">
-                                    <input class="quantity form-control"
-                                        type="number" min="1" max="10000000"
-                                        value="{{ $product['quantity'] }}">
-                                </div>
-                            </td> --}}
 
                             <div class="input-group">
                                 <td class="cart-product-quantity" width="150px">
                                     <div class="input-group quantity">
-
-                                        <!--- Decrement Btn -->
-                                        <div class="input-group-prepend btnItemUpdate qtyMinus"
-                                            data-cartid="{{ $item['id'] }}" style="cursor: pointer">
-                                            <span class="input-group-text">-</span>
-                                        </div>
-
-                                        <input type="text" class="qty-input form-control quantity"
-                                            id="appendedInputButtons" value="{{ $item['quantity'] }}">
-                                            
-                                        <!--- Increment Btn -->
-                                        <div class="input-group-append btnItemUpdate qtyPlus"
-                                            data-cartid="{{ $item['id'] }}" style="cursor: pointer">
-                                            <span class="input-group-text">+</span>
-                                        </div>
-
+                                        <!----- Quantity ----->
+                                        <input onchange="subTotal()" type="number" min="1" max="10"
+                                            class="qty-input iquantity form-control" value="{{ $item['quantity'] }}">
                                     </div>
                                 </td>
                             </div>
 
                             <td>
                                 <div class="total">
-                                    <span class="price">${{ $sub_total }}</span>
-                                    <a href="#" class="remove_cart_item">
+                                    <span class="price itotal">
+                                        <!--- Sub Total Price
+                                            Came To Ajax......
+                                        Sub Total Price ------>
+                                    </span>
+                                    <a href="#" class="remove_cart_item" data-id="{{ $item['id'] }}">
                                         <i class="las la-trash"></i>
                                     </a>
                                 </div>
@@ -116,8 +97,10 @@
             <h4 class="title">Cart Total</h4>
             <div class="cost-name-amount">
                 <span class="same total">total:</span>
-                <span class="same total-amount">
-                    ${{ $total_price }}
+                <span class="same total-amount" id="gtotal">
+                    <!----- Total Price
+                        Came To Ajax...
+                        ------------>
                 </span>
             </div>
             <div class="btn-wrapper">
@@ -130,3 +113,21 @@
         </div>
     </div>
 </div>
+<script>
+    var gt = 0;
+    var iprice = document.getElementsByClassName('iprice');
+    var iquantity = document.getElementsByClassName('iquantity');
+    var itotal = document.getElementsByClassName('itotal');
+    var gtotal = document.getElementById('gtotal');
+
+    function subTotal() {
+        gt = 0;
+        for (i = 0; i < iprice.length; i++) {
+            itotal[i].innerText = (iprice[i].value) * (iquantity[i].value);
+            gt = gt + (iprice[i].value) * (iquantity[i].value)
+        }
+        gtotal.innerText = gt;
+    }
+
+    subTotal();
+</script>

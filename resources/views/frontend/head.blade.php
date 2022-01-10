@@ -12,6 +12,14 @@
         gtag('js', new Date());
         gtag('config', "UA-173946136-1");
     </script>
+    <style>
+        form.cmxform label.error,
+        label.error {
+            color: red !important;
+            text-transform: capitalize;
+        }
+
+    </style>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +27,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="this is multilingual example meta tag for english">
     <meta name="tags" content="hello,meta,tag">
+    <meta name="csfr-token" content="{{ csrf_token() }}" />
+
     <link rel="icon" href="{{ asset('frontend/assets/uploads/media-uploader/favicon1632034026.png') }}"
         type="image/png">
     <link rel="preconnect" href="https://fonts.gstatic.com">

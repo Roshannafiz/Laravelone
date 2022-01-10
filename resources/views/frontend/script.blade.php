@@ -18,7 +18,15 @@
 <script src="https://bytesed.com/laravel/zaika/assets/frontend/js/bootstrap4-rating-input.js"></script>
 <!--- Ui js ---->
 <script src="https://bytesed.com/laravel/zaika/assets/common/js/jquery-ui.min.js"></script>
+
+
+<!---- Form Validation ---->
+<script src="{{ asset('frontend/assets/validation/jquery.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+
+
 <!-- main js -->
+<script src="{{ asset('frontend/assets/js/jq_validate.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/my_frontend.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/dynamic-script.js') }}"></script>
