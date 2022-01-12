@@ -28,6 +28,6 @@ class ProductController extends Controller
         $sizes = Size::all();
         $colors = Color::all();
         $products = Product::all();
-        return view('frontend.product', compact('count'));
+        return view('frontend.product', compact('products'));
     }
 }

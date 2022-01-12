@@ -87,12 +87,12 @@
                                 </div>
                                 <div class="sin-in-with">
                                     <a href="#" class="sign-in-btn">
-                                        <img src="https://bytesed.com/laravel/zaika/assets/frontend/img/icon/google-icon.svg"
+                                        <img src="#"
                                             alt="icon">
                                         Sign in with Google
                                     </a>
                                     <a href="#" class="sign-in-btn">
-                                        <img src="https://bytesed.com/laravel/zaika/assets/frontend/img/icon/Facebook-icon.svg"
+                                        <img src="#"
                                             alt="icon">
                                         Sign in with Facebook
                                     </a>

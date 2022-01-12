@@ -12,6 +12,8 @@ use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
+use App\Http\Controllers\Frontend\MyAccountController;
+use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\UnitController;
@@ -27,7 +29,11 @@ Route::get('/logout', [SuperAdminController::class, 'logout']);
 
 
 
-
+//<<<<<<<------- All Orders Route Here ---------->>>>>>
+Route::get('/orders', [App\Http\Controllers\OrderController::class, 'all_orders']);
+//_______________ Change Ststus Orders Usign Ajax _____________//
+Route::get('/order-status', [App\Http\Controllers\OrderController::class, 'change_status'])->name('order-status');
+Route::delete('/orders_delete/{id}', [App\Http\Controllers\OrderController::class, 'destroy'])->name('destroy');
 
 
 
@@ -128,12 +134,6 @@ Route::get('/colors-status', [ColorController::class, 'change_status'])->name('c
 
 
 //____________________ Frontend Route----->>>>>
-// User Login/Register + View
-//Auth::routes();
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
-
 // User View + Login / Register / Logout / Forgot Password / Email Check Usign Ajax
 Route::get('/register', [App\Http\Controllers\Frontend\UsersController::class, 'register']);
 Route::get('/login', [App\Http\Controllers\Frontend\UsersController::class, 'login']);
@@ -145,8 +145,10 @@ Route::post('/login', [App\Http\Controllers\Frontend\UsersController::class, 'lo
 Route::get('/logout', [App\Http\Controllers\Frontend\UsersController::class, 'LogoutUser'])->name('logout');
 Route::match(['get', 'post'], 'check-email', [App\Http\Controllers\Frontend\UsersController::class, 'CheckEmail'])->name('check-email');
 
+// Forget Password
 Route::match(['GET', 'POST'], 'forgot-password', [App\Http\Controllers\Frontend\UsersController::class, 'ForgotPassword']);
-
+// My Account
+Route::get('/my_account', [MyAccountController::class, 'index']);
 
 
 Route::get('/', [HomeController::class, 'index']);
@@ -163,3 +165,6 @@ Route::get('/view-product/{id}', [HomeController::class, 'view_product']);
 // Add To Cart / Delete Cart
 Route::post('/add-to-cart', [CartController::class, 'addtocart'])->name('addtocart');
 Route::get('/delete_cart/{id}', [CartController::class, 'delete_cart'])->name('delete_cart');
+
+// Store Customar Order
+Route::post('/place_order', [OrderController::class, 'storeOrder']);

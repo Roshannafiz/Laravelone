@@ -103,10 +103,12 @@
                 </span>
             </div>
             <div class="btn-wrapper">
-                <form action="https://bytesed.com/laravel/zaika/checkout">
-                    <input type="hidden" name="coupon" class="form-control" placeholder="Enter your coupon code"
-                        value="">
-                    <button class="default-btn">Process to Checkout</button>
+                <form action="#">
+                    @if ($user = Auth::user())
+                        <a href="{{ url('/checkout') }}" class="default-btn">Process to Checkout</a>
+                    @else
+                        <a href="{{ url('/login') }}" class="default-btn">Process to Checkout</a>
+                    @endif
                 </form>
             </div>
         </div>

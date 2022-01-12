@@ -162,6 +162,29 @@
     });
     /*======== 17. END PRODUCT STATUS ========*/
 
+
+    /*======== 18. START CHANGE ORDERS STATUS ========*/
+    $(function () {
+        $('.toggle-class-order').change(function () {
+            var status = $(this).prop('checked') == true ? 1 : 0;
+            var order_id = $(this).data('id');
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: '/order-status',
+                data: {
+                    'status': status,
+                    'order_id': order_id
+                },
+                success: function (data) {
+                    console.log('Success')
+                }
+            });
+        });
+    });
+    /*======== 18. END ORDERS STATUS ========*/
+
     // Dropify Image
     $(document).ready(function () {
         $('.dropify').dropify();

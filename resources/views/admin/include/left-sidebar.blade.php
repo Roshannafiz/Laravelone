@@ -22,6 +22,13 @@
                  </a>
              </li>
 
+             <li class="nav-item {{ request()->is('orders') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('/orders') }}">
+                    <span class="menu-title">Orders</span>
+                    <i class="mdi mdi-home menu-icon"></i>
+                </a>
+            </li>
+
 
              <!----------------- For Product ----------->
              <li

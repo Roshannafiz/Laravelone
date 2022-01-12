@@ -28,7 +28,8 @@ class HomeController extends Controller
         $sizes = Size::all();
         $colors = Color::all();
         $products = Product::where('status', 1)->latest()->limit(6)->get();
-        return view('frontend.master', compact('products', 'count'));
+        $products_tendy = Product::where('status', 1)->orderBy('id', 'DESC')->limit(6)->get();
+        return view('frontend.master', compact('products', 'count', 'products_tendy'));
     }
     public function view_product($id)
     {
